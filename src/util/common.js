@@ -1,10 +1,13 @@
 export function generateColor () {
-  // let num = Math.random()*255;
   let res = '#';
   for(let i=0;i<3;i++) {
     res += random(128,255).toString(16)
   }
   return res
+}
+
+export function generateIcon () {
+  return random(1,8)
 }
 
 /**

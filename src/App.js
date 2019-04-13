@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Logo from './components/logo';
-import { generateColor } from './util/common';
+import { generateColor, generateIcon } from './util/common';
 
 class App extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      count: 0
+      background: 0,
+      icon: 0,
+      mode: 1
     }
   }
 
   componentDidMount() {
     this.changeColor()
+    this.changeIcon()
   }
 
   componentDidCatch(error, info) {
@@ -21,13 +24,19 @@ class App extends Component {
 
   changeColor = () => {
     this.setState({
-      count: generateColor()
+      background: generateColor()
     })
   }
 
-  changeFont = () => {
+  changeIcon = () => {
     this.setState({
-      count: generateColor()
+      icon: generateIcon()
+    })
+  }
+
+  changeMode = () => {
+    this.setState({
+      mode: this.state.mode===1?2:1
     })
   }
 
@@ -39,12 +48,22 @@ class App extends Component {
             <button onClick={this.changeColor}>
               背景色
             </button>
-            <button onClick={this.changeFont}>
-              字体
+            <button onClick={this.changeMode}>
+              模式
             </button>
+            <button onClick={this.changeIcon}>
+              图案
+            </button>
+            {/* <button onClick={this.changeFont}>
+              字体
+            </button> */}
           </div>
           
-          <Logo count={this.state.count}/>
+          <Logo 
+            background={this.state.background}
+            icon={this.state.icon}
+            mode={this.state.mode}
+          />
         </header>
       </div>
     );
