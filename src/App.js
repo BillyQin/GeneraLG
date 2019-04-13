@@ -1,24 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Logo from './components/logo';
+import { generateColor } from './util/common';
 
 class App extends Component {
+  constructor() {
+    super(...arguments);
+    this.state = {
+      count: 0
+    }
+  }
+
+  componentDidMount() {
+    this.changeColor()
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error, info)
+  }
+
+  changeColor = () => {
+    this.setState({
+      count: generateColor()
+    })
+  }
+
+  changeFont = () => {
+    this.setState({
+      count: generateColor()
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <div className="button-group">
+            <button onClick={this.changeColor}>
+              背景色
+            </button>
+            <button onClick={this.changeFont}>
+              字体
+            </button>
+          </div>
+          
+          <Logo count={this.state.count}/>
         </header>
       </div>
     );
