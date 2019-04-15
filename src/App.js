@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Logo from './components/logo';
+import ImageList from './components/imgLists';
 import { generateColor, generateIcon } from './util/common';
 
 const MODE = [1,2,3,4]
@@ -14,7 +15,8 @@ class App extends Component {
       mode: 1,
       text: ''
     }
-    this.titleText = ''
+    this.titleText = '';
+    this.background= '';
   }
 
   componentDidMount() {
@@ -54,6 +56,14 @@ class App extends Component {
     this.titleText = target.value
   }
 
+  changeBackgroundHandle = ({target}) => {
+    this.background = target.value
+  }
+
+  getImg = (key) => {
+    this.setState({icon: key})
+  }
+
   render() {
     return (
       <div className="App">
@@ -68,8 +78,8 @@ class App extends Component {
           <div className="form-item">
             <h3>背景色</h3>
             <div className="item">
-              <input />
-              <button onClick={this.changeColor}>确定</button>
+              <input onChange={this.changeBackgroundHandle}/>
+              <button onClick={()=>{this.setState({background: this.background})}}>确定</button>
             </div>
             <div className="item">
               <span>{this.state.background}</span>
@@ -82,9 +92,9 @@ class App extends Component {
               <span>图案{this.state.icon}</span>
               <button onClick={this.changeIcon}>随机生成</button>
             </div>
-            <div className="item">
+            {/* <div className="item">
               <button onClick={this.changeColor}>图案列表</button>
-            </div>
+            </div> */}
           </div>
           <div className="form-item">
             <h3>模式</h3>
@@ -102,6 +112,7 @@ class App extends Component {
             mode={this.state.mode}
             text={this.state.text}
           />
+          <ImageList getImg={this.getImg}/>
         </main>
       </div>
     );

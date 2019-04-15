@@ -54,7 +54,7 @@ class Logo extends PureComponent {
     if (mode === 4) {
       // 波浪线
       // 贝塞尔曲线
-      // http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html 
+      // http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html
       ctx.beginPath();
       ctx.lineWidth = 3;
       ctx.strokeStyle = "#333";
